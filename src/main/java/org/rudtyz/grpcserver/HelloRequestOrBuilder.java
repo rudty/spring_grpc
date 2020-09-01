@@ -4,7 +4,7 @@
 package org.rudtyz.grpcserver;
 
 public interface HelloRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:HelloRequest)
+    // @@protoc_insertion_point(interface_extends:helloworld.HelloRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

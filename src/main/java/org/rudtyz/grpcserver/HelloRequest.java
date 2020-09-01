@@ -8,11 +8,11 @@ package org.rudtyz.grpcserver;
  * The request message containing the user's name.
  * </pre>
  *
- * Protobuf type {@code HelloRequest}
+ * Protobuf type {@code helloworld.HelloRequest}
  */
 public final class HelloRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:HelloRequest)
+    // @@protoc_insertion_point(message_implements:helloworld.HelloRequest)
     HelloRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use HelloRequest.newBuilder() to construct.
@@ -80,13 +80,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return org.rudtyz.grpcserver.Helloword.internal_static_HelloRequest_descriptor;
+    return org.rudtyz.grpcserver.Helloword.internal_static_helloworld_HelloRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return org.rudtyz.grpcserver.Helloword.internal_static_HelloRequest_fieldAccessorTable
+    return org.rudtyz.grpcserver.Helloword.internal_static_helloworld_HelloRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             org.rudtyz.grpcserver.HelloRequest.class, org.rudtyz.grpcserver.HelloRequest.Builder.class);
   }
@@ -288,21 +288,21 @@ private static final long serialVersionUID = 0L;
    * The request message containing the user's name.
    * </pre>
    *
-   * Protobuf type {@code HelloRequest}
+   * Protobuf type {@code helloworld.HelloRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:HelloRequest)
+      // @@protoc_insertion_point(builder_implements:helloworld.HelloRequest)
       org.rudtyz.grpcserver.HelloRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.rudtyz.grpcserver.Helloword.internal_static_HelloRequest_descriptor;
+      return org.rudtyz.grpcserver.Helloword.internal_static_helloworld_HelloRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.rudtyz.grpcserver.Helloword.internal_static_HelloRequest_fieldAccessorTable
+      return org.rudtyz.grpcserver.Helloword.internal_static_helloworld_HelloRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               org.rudtyz.grpcserver.HelloRequest.class, org.rudtyz.grpcserver.HelloRequest.Builder.class);
     }
@@ -333,7 +333,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return org.rudtyz.grpcserver.Helloword.internal_static_HelloRequest_descriptor;
+      return org.rudtyz.grpcserver.Helloword.internal_static_helloworld_HelloRequest_descriptor;
     }
 
     @java.lang.Override
@@ -523,10 +523,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:HelloRequest)
+    // @@protoc_insertion_point(builder_scope:helloworld.HelloRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:HelloRequest)
+  // @@protoc_insertion_point(class_scope:helloworld.HelloRequest)
   private static final org.rudtyz.grpcserver.HelloRequest DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new org.rudtyz.grpcserver.HelloRequest();
