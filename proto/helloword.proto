@@ -4,10 +4,12 @@ option java_package = "org.rudtyz.grpcserver";
 option java_multiple_files = true;
 option go_package = ".;main";
 package helloworld;
+import "google/protobuf/empty.proto";
 // The greeting service definition.
 service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc GetSample (google.protobuf.Empty) returns (SampleReply) {}
 }
 
 // The request message containing the user's name.
@@ -18,4 +20,9 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
+}
+
+message SampleReply {
+    string name = 1;
+    int32 number = 2;
 }
