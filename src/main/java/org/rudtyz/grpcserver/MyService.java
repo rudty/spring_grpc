@@ -19,9 +19,8 @@ public class MyService {
     }
 
     @Async
-    public CompletableFuture<String> doAsync() {
-        System.out.println("tid2:" + Thread.currentThread().getId());
-        return CompletableFuture.completedFuture("async");
+    public CompletableFuture<String> throwAsync() {
+        throw new RuntimeException("throw async");
     }
 
     @Async

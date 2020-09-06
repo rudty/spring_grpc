@@ -92,6 +92,37 @@ public final class GreeterGrpc {
     return getGetSampleMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.rudtyz.grpcserver.dto.HelloReply> getAsyncThrowExceptionMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "AsyncThrowException",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.rudtyz.grpcserver.dto.HelloReply.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.rudtyz.grpcserver.dto.HelloReply> getAsyncThrowExceptionMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.rudtyz.grpcserver.dto.HelloReply> getAsyncThrowExceptionMethod;
+    if ((getAsyncThrowExceptionMethod = GreeterGrpc.getAsyncThrowExceptionMethod) == null) {
+      synchronized (GreeterGrpc.class) {
+        if ((getAsyncThrowExceptionMethod = GreeterGrpc.getAsyncThrowExceptionMethod) == null) {
+          GreeterGrpc.getAsyncThrowExceptionMethod = getAsyncThrowExceptionMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.rudtyz.grpcserver.dto.HelloReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AsyncThrowException"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.rudtyz.grpcserver.dto.HelloReply.getDefaultInstance()))
+              .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("AsyncThrowException"))
+              .build();
+        }
+      }
+    }
+    return getAsyncThrowExceptionMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -160,6 +191,13 @@ public final class GreeterGrpc {
       asyncUnimplementedUnaryCall(getGetSampleMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void asyncThrowException(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.HelloReply> responseObserver) {
+      asyncUnimplementedUnaryCall(getAsyncThrowExceptionMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -176,6 +214,13 @@ public final class GreeterGrpc {
                 com.google.protobuf.Empty,
                 org.rudtyz.grpcserver.dto.SampleReply>(
                   this, METHODID_GET_SAMPLE)))
+          .addMethod(
+            getAsyncThrowExceptionMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.rudtyz.grpcserver.dto.HelloReply>(
+                  this, METHODID_ASYNC_THROW_EXCEPTION)))
           .build();
     }
   }
@@ -215,6 +260,14 @@ public final class GreeterGrpc {
       asyncUnaryCall(
           getChannel().newCall(getGetSampleMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void asyncThrowException(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.HelloReply> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getAsyncThrowExceptionMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -249,6 +302,13 @@ public final class GreeterGrpc {
     public org.rudtyz.grpcserver.dto.SampleReply getSample(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
           getChannel(), getGetSampleMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.rudtyz.grpcserver.dto.HelloReply asyncThrowException(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getAsyncThrowExceptionMethod(), getCallOptions(), request);
     }
   }
 
@@ -287,10 +347,19 @@ public final class GreeterGrpc {
       return futureUnaryCall(
           getChannel().newCall(getGetSampleMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.rudtyz.grpcserver.dto.HelloReply> asyncThrowException(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getAsyncThrowExceptionMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SAY_HELLO = 0;
   private static final int METHODID_GET_SAMPLE = 1;
+  private static final int METHODID_ASYNC_THROW_EXCEPTION = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -316,6 +385,10 @@ public final class GreeterGrpc {
         case METHODID_GET_SAMPLE:
           serviceImpl.getSample((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.SampleReply>) responseObserver);
+          break;
+        case METHODID_ASYNC_THROW_EXCEPTION:
+          serviceImpl.asyncThrowException((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.HelloReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -380,6 +453,7 @@ public final class GreeterGrpc {
               .setSchemaDescriptor(new GreeterFileDescriptorSupplier())
               .addMethod(getSayHelloMethod())
               .addMethod(getGetSampleMethod())
+              .addMethod(getAsyncThrowExceptionMethod())
               .build();
         }
       }

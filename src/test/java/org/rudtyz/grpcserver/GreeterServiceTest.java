@@ -7,6 +7,7 @@ import io.grpc.health.v1.HealthCheckResponse;
 import io.grpc.health.v1.HealthGrpc;
 import org.junit.jupiter.api.Test;
 import org.rudtyz.grpcserver.dto.GreeterGrpc;
+import org.rudtyz.grpcserver.dto.HelloReply;
 import org.rudtyz.grpcserver.dto.HelloRequest;
 import org.rudtyz.grpcserver.dto.SampleReply;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,18 @@ public class GreeterServiceTest {
         final SampleReply reply = greeterFutureStub.getSample(com.google.protobuf.Empty.newBuilder().build()).get();
         System.out.println(reply.getName());
         System.out.println(reply.getNumber());
+//        assertThat(reply).isEqualTo("helloasync");
+    }
+
+    @Test
+    public void asyncThrowException() throws ExecutionException, InterruptedException {
+        final ManagedChannel channel = newManagedChannel();
+
+        final GreeterGrpc.GreeterFutureStub greeterFutureStub = GreeterGrpc.newFutureStub(channel);
+
+        final var res = greeterFutureStub.asyncThrowException(com.google.protobuf.Empty.newBuilder().build());
+        res.get();
+//        System.out.println(reply.getMessage());
 //        assertThat(reply).isEqualTo("helloasync");
     }
 

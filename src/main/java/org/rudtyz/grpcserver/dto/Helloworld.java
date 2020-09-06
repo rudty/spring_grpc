@@ -42,11 +42,13 @@ public final class Helloworld {
       "rotobuf/empty.proto\"\034\n\014HelloRequest\022\014\n\004n" +
       "ame\030\001 \001(\t\"\035\n\nHelloReply\022\017\n\007message\030\001 \001(\t" +
       "\"+\n\013SampleReply\022\014\n\004name\030\001 \001(\t\022\016\n\006number\030" +
-      "\002 \001(\0052\211\001\n\007Greeter\022>\n\010SayHello\022\030.hellowor" +
+      "\002 \001(\0052\322\001\n\007Greeter\022>\n\010SayHello\022\030.hellowor" +
       "ld.HelloRequest\032\026.helloworld.HelloReply\"" +
       "\000\022>\n\tGetSample\022\026.google.protobuf.Empty\032\027" +
-      ".helloworld.SampleReply\"\000B%\n\031org.rudtyz." +
-      "grpcserver.dtoP\001Z\006.;mainb\006proto3"
+      ".helloworld.SampleReply\"\000\022G\n\023AsyncThrowE" +
+      "xception\022\026.google.protobuf.Empty\032\026.hello" +
+      "world.HelloReply\"\000B%\n\031org.rudtyz.grpcser" +
+      "ver.dtoP\001Z\006.;mainb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

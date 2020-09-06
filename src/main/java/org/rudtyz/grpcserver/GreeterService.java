@@ -1,6 +1,8 @@
 package org.rudtyz.grpcserver;
 
 import com.google.protobuf.Empty;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 import org.rudtyz.grpcserver.dto.GreeterGrpc;
@@ -8,6 +10,8 @@ import org.rudtyz.grpcserver.dto.HelloReply;
 import org.rudtyz.grpcserver.dto.HelloRequest;
 import org.rudtyz.grpcserver.dto.SampleReply;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.function.*;
 
 @GRpcService
 public class GreeterService extends GreeterGrpc.GreeterImplBase {
@@ -50,8 +54,25 @@ public class GreeterService extends GreeterGrpc.GreeterImplBase {
                                 .setNumber(sample.getNumber())
                                 .build()
                 );
-
                 responseObserver.onCompleted();
+        });
+    }
+
+    @Override
+    public void asyncThrowException(Empty request, StreamObserver<HelloReply> responseObserver) {
+        var f = myService.throwAsync();
+        f.handle((s, ex) -> {
+            if (ex != null) {
+                responseObserver.onError(ex);
+            } else {
+                var res = HelloReply
+                        .newBuilder()
+                        .setMessage(s)
+                        .build();
+                responseObserver.onNext(res);
+            }
+            responseObserver.onCompleted();
+            return null;
         });
     }
 }
