@@ -6,6 +6,9 @@ import io.grpc.health.v1.HealthCheckRequest;
 import io.grpc.health.v1.HealthCheckResponse;
 import io.grpc.health.v1.HealthGrpc;
 import org.junit.jupiter.api.Test;
+import org.rudtyz.grpcserver.dto.GreeterGrpc;
+import org.rudtyz.grpcserver.dto.HelloRequest;
+import org.rudtyz.grpcserver.dto.SampleReply;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,11 +36,23 @@ public class GreeterServiceTest {
 
         final GreeterGrpc.GreeterFutureStub greeterFutureStub = GreeterGrpc.newFutureStub(channel);
         final HelloRequest helloRequest = HelloRequest.newBuilder()
-                .setName("hello")
+                .setName("grpc")
                 .build();
         final String reply = greeterFutureStub.sayHello(helloRequest).get().getMessage();
 
-        assertThat(reply).isEqualTo("helloasync");
+        assertThat(reply).isEqualTo("hello grpc");
+    }
+
+    @Test
+    public void sampleRequest() throws ExecutionException, InterruptedException {
+        final ManagedChannel channel = newManagedChannel();
+
+        final GreeterGrpc.GreeterFutureStub greeterFutureStub = GreeterGrpc.newFutureStub(channel);
+
+        final SampleReply reply = greeterFutureStub.getSample(com.google.protobuf.Empty.newBuilder().build()).get();
+        System.out.println(reply.getName());
+        System.out.println(reply.getNumber());
+//        assertThat(reply).isEqualTo("helloasync");
     }
 
     @Test

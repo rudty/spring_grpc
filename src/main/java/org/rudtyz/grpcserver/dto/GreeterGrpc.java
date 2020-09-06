@@ -1,4 +1,4 @@
-package org.rudtyz.grpcserver;
+package org.rudtyz.grpcserver.dto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.31.1)",
-    comments = "Source: helloword.proto")
+    comments = "Source: helloworld.proto")
 public final class GreeterGrpc {
 
   private GreeterGrpc() {}
@@ -30,35 +30,66 @@ public final class GreeterGrpc {
   public static final String SERVICE_NAME = "helloworld.Greeter";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<org.rudtyz.grpcserver.HelloRequest,
-      org.rudtyz.grpcserver.HelloReply> getSayHelloMethod;
+  private static volatile io.grpc.MethodDescriptor<org.rudtyz.grpcserver.dto.HelloRequest,
+      org.rudtyz.grpcserver.dto.HelloReply> getSayHelloMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SayHello",
-      requestType = org.rudtyz.grpcserver.HelloRequest.class,
-      responseType = org.rudtyz.grpcserver.HelloReply.class,
+      requestType = org.rudtyz.grpcserver.dto.HelloRequest.class,
+      responseType = org.rudtyz.grpcserver.dto.HelloReply.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.rudtyz.grpcserver.HelloRequest,
-      org.rudtyz.grpcserver.HelloReply> getSayHelloMethod() {
-    io.grpc.MethodDescriptor<org.rudtyz.grpcserver.HelloRequest, org.rudtyz.grpcserver.HelloReply> getSayHelloMethod;
+  public static io.grpc.MethodDescriptor<org.rudtyz.grpcserver.dto.HelloRequest,
+      org.rudtyz.grpcserver.dto.HelloReply> getSayHelloMethod() {
+    io.grpc.MethodDescriptor<org.rudtyz.grpcserver.dto.HelloRequest, org.rudtyz.grpcserver.dto.HelloReply> getSayHelloMethod;
     if ((getSayHelloMethod = GreeterGrpc.getSayHelloMethod) == null) {
       synchronized (GreeterGrpc.class) {
         if ((getSayHelloMethod = GreeterGrpc.getSayHelloMethod) == null) {
           GreeterGrpc.getSayHelloMethod = getSayHelloMethod =
-              io.grpc.MethodDescriptor.<org.rudtyz.grpcserver.HelloRequest, org.rudtyz.grpcserver.HelloReply>newBuilder()
+              io.grpc.MethodDescriptor.<org.rudtyz.grpcserver.dto.HelloRequest, org.rudtyz.grpcserver.dto.HelloReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SayHello"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.rudtyz.grpcserver.HelloRequest.getDefaultInstance()))
+                  org.rudtyz.grpcserver.dto.HelloRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.rudtyz.grpcserver.HelloReply.getDefaultInstance()))
+                  org.rudtyz.grpcserver.dto.HelloReply.getDefaultInstance()))
               .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("SayHello"))
               .build();
         }
       }
     }
     return getSayHelloMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.rudtyz.grpcserver.dto.SampleReply> getGetSampleMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetSample",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = org.rudtyz.grpcserver.dto.SampleReply.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      org.rudtyz.grpcserver.dto.SampleReply> getGetSampleMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, org.rudtyz.grpcserver.dto.SampleReply> getGetSampleMethod;
+    if ((getGetSampleMethod = GreeterGrpc.getGetSampleMethod) == null) {
+      synchronized (GreeterGrpc.class) {
+        if ((getGetSampleMethod = GreeterGrpc.getGetSampleMethod) == null) {
+          GreeterGrpc.getGetSampleMethod = getGetSampleMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, org.rudtyz.grpcserver.dto.SampleReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetSample"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  org.rudtyz.grpcserver.dto.SampleReply.getDefaultInstance()))
+              .setSchemaDescriptor(new GreeterMethodDescriptorSupplier("GetSample"))
+              .build();
+        }
+      }
+    }
+    return getGetSampleMethod;
   }
 
   /**
@@ -117,9 +148,16 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public void sayHello(org.rudtyz.grpcserver.HelloRequest request,
-        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.HelloReply> responseObserver) {
+    public void sayHello(org.rudtyz.grpcserver.dto.HelloRequest request,
+        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.HelloReply> responseObserver) {
       asyncUnimplementedUnaryCall(getSayHelloMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void getSample(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.SampleReply> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetSampleMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -128,9 +166,16 @@ public final class GreeterGrpc {
             getSayHelloMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                org.rudtyz.grpcserver.HelloRequest,
-                org.rudtyz.grpcserver.HelloReply>(
+                org.rudtyz.grpcserver.dto.HelloRequest,
+                org.rudtyz.grpcserver.dto.HelloReply>(
                   this, METHODID_SAY_HELLO)))
+          .addMethod(
+            getGetSampleMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                org.rudtyz.grpcserver.dto.SampleReply>(
+                  this, METHODID_GET_SAMPLE)))
           .build();
     }
   }
@@ -157,10 +202,18 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public void sayHello(org.rudtyz.grpcserver.HelloRequest request,
-        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.HelloReply> responseObserver) {
+    public void sayHello(org.rudtyz.grpcserver.dto.HelloRequest request,
+        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.HelloReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSayHelloMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getSample(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.SampleReply> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetSampleMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -186,9 +239,16 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public org.rudtyz.grpcserver.HelloReply sayHello(org.rudtyz.grpcserver.HelloRequest request) {
+    public org.rudtyz.grpcserver.dto.HelloReply sayHello(org.rudtyz.grpcserver.dto.HelloRequest request) {
       return blockingUnaryCall(
           getChannel(), getSayHelloMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public org.rudtyz.grpcserver.dto.SampleReply getSample(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getGetSampleMethod(), getCallOptions(), request);
     }
   }
 
@@ -214,14 +274,23 @@ public final class GreeterGrpc {
      * Sends a greeting
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<org.rudtyz.grpcserver.HelloReply> sayHello(
-        org.rudtyz.grpcserver.HelloRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<org.rudtyz.grpcserver.dto.HelloReply> sayHello(
+        org.rudtyz.grpcserver.dto.HelloRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getSayHelloMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<org.rudtyz.grpcserver.dto.SampleReply> getSample(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetSampleMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_SAY_HELLO = 0;
+  private static final int METHODID_GET_SAMPLE = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -241,8 +310,12 @@ public final class GreeterGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_SAY_HELLO:
-          serviceImpl.sayHello((org.rudtyz.grpcserver.HelloRequest) request,
-              (io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.HelloReply>) responseObserver);
+          serviceImpl.sayHello((org.rudtyz.grpcserver.dto.HelloRequest) request,
+              (io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.HelloReply>) responseObserver);
+          break;
+        case METHODID_GET_SAMPLE:
+          serviceImpl.getSample((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<org.rudtyz.grpcserver.dto.SampleReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -266,7 +339,7 @@ public final class GreeterGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return org.rudtyz.grpcserver.Helloword.getDescriptor();
+      return org.rudtyz.grpcserver.dto.Helloworld.getDescriptor();
     }
 
     @java.lang.Override
@@ -306,6 +379,7 @@ public final class GreeterGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new GreeterFileDescriptorSupplier())
               .addMethod(getSayHelloMethod())
+              .addMethod(getGetSampleMethod())
               .build();
         }
       }
