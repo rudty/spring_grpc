@@ -1,8 +1,6 @@
 package org.rudtyz.grpcserver;
 
 import com.google.protobuf.Empty;
-import io.grpc.Status;
-import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 import org.rudtyz.grpcserver.dto.GreeterGrpc;
@@ -10,8 +8,6 @@ import org.rudtyz.grpcserver.dto.HelloReply;
 import org.rudtyz.grpcserver.dto.HelloRequest;
 import org.rudtyz.grpcserver.dto.SampleReply;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.function.*;
 
 @GRpcService
 public class GreeterService extends GreeterGrpc.GreeterImplBase {
@@ -39,25 +35,24 @@ public class GreeterService extends GreeterGrpc.GreeterImplBase {
     }
 
     /**
-     *  비동기 서비스(@Async)에서 값을 가져와서 응답
+     * jpa 연동
      */
     @Override
     public void getSample(Empty request, StreamObserver<SampleReply> responseObserver) {
-        var f = myService.getSample();
-        System.out.println("tid1:" + Thread.currentThread().getId());
-        f.thenAccept(sample -> {
-            System.out.println("tid3:" + Thread.currentThread().getId());
-                responseObserver.onNext(
-                        SampleReply
-                                .newBuilder()
-                                .setName(sample.getName())
-                                .setNumber(sample.getNumber())
-                                .build()
-                );
-                responseObserver.onCompleted();
-        });
+        var sample = myService.getSample();
+        responseObserver.onNext(
+                SampleReply
+                        .newBuilder()
+                        .setName(sample.getName())
+                        .setNumber(sample.getNumber())
+                        .build()
+        );
+        responseObserver.onCompleted();
     }
 
+    /**
+     * 비동기에서 throw 할때는 spring controller 와 비슷하게 onError 로 넘기면 될 듯
+     */
     @Override
     public void asyncThrowException(Empty request, StreamObserver<HelloReply> responseObserver) {
         var f = myService.throwAsync();

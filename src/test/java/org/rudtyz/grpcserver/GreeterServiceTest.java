@@ -2,19 +2,18 @@ package org.rudtyz.grpcserver;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.Status;
+import io.grpc.StatusRuntimeException;
 import io.grpc.health.v1.HealthCheckRequest;
 import io.grpc.health.v1.HealthCheckResponse;
 import io.grpc.health.v1.HealthGrpc;
 import org.junit.jupiter.api.Test;
 import org.rudtyz.grpcserver.dto.GreeterGrpc;
-import org.rudtyz.grpcserver.dto.HelloReply;
 import org.rudtyz.grpcserver.dto.HelloRequest;
 import org.rudtyz.grpcserver.dto.SampleReply;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -51,9 +50,8 @@ public class GreeterServiceTest {
         final GreeterGrpc.GreeterFutureStub greeterFutureStub = GreeterGrpc.newFutureStub(channel);
 
         final SampleReply reply = greeterFutureStub.getSample(com.google.protobuf.Empty.newBuilder().build()).get();
-        System.out.println(reply.getName());
-        System.out.println(reply.getNumber());
-//        assertThat(reply).isEqualTo("helloasync");
+        assertThat(reply.getName()).isEqualTo("1");
+        assertThat(reply.getNumber()).isEqualTo(2);
     }
 
     @Test
@@ -63,9 +61,17 @@ public class GreeterServiceTest {
         final GreeterGrpc.GreeterFutureStub greeterFutureStub = GreeterGrpc.newFutureStub(channel);
 
         final var res = greeterFutureStub.asyncThrowException(com.google.protobuf.Empty.newBuilder().build());
-        res.get();
-//        System.out.println(reply.getMessage());
-//        assertThat(reply).isEqualTo("helloasync");
+
+        try {
+            res.get();
+            assert false;
+        } catch (ExecutionException e) {
+            var cause = e.getCause();
+            if (cause instanceof StatusRuntimeException) {
+                var statusRuntimeException = (StatusRuntimeException)cause;
+                assertThat(statusRuntimeException.getStatus().getCode()).isEqualTo(Status.Code.UNKNOWN);
+            }
+        }
     }
 
     @Test
