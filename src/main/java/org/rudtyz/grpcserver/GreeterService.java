@@ -1,6 +1,8 @@
 package org.rudtyz.grpcserver;
 
 import com.google.protobuf.Empty;
+import io.grpc.Context;
+import io.grpc.Contexts;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 import org.rudtyz.grpcserver.dto.GreeterGrpc;
@@ -9,7 +11,7 @@ import org.rudtyz.grpcserver.dto.HelloRequest;
 import org.rudtyz.grpcserver.dto.SampleReply;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@GRpcService
+@GRpcService(interceptors = { GreeterInterceptor.class })
 public class GreeterService extends GreeterGrpc.GreeterImplBase {
 
     @Autowired
